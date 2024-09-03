@@ -9,19 +9,29 @@ function App() {
   const [cart, setCart] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
-  // Verificando lista de productos
+  // Lista de productos
   const products = [
     { id: 1, name: 'Producto A', price: 10 },
     { id: 2, name: 'Producto B', price: 15 },
-    
+    // Puedes agregar más productos aquí
   ];
 
+  // Función para agregar productos al carrito
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    const existingProduct = cart.find(item => item.id === product.id);
+    if (existingProduct) {
+      setCart(cart.map(item =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
     setTotalPrice(totalPrice + product.price);
   };
 
-  //Confirma el pedido
+  // Función para confirmar el pedido
   const confirmOrder = () => {
     if (cart.length === 0) {
       alert('El carrito está vacío.');
