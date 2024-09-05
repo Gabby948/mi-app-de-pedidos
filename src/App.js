@@ -5,7 +5,7 @@ import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 
 function App() {
-  // Estado para el carrito y el precio total
+  
   const [cart, setCart] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
@@ -13,10 +13,10 @@ function App() {
   const products = [
     { id: 1, name: 'Producto A', price: 10 },
     { id: 2, name: 'Producto B', price: 15 },
-    // Puedes agregar más productos aquí
+   
   ];
 
-  // Función para agregar productos al carrito
+ 
   const addToCart = (product) => {
     const existingProduct = cart.find(item => item.id === product.id);
     if (existingProduct) {
@@ -31,7 +31,7 @@ function App() {
     setTotalPrice(totalPrice + product.price);
   };
 
-  // Función para confirmar el pedido
+
   const confirmOrder = () => {
     if (cart.length === 0) {
       alert('El carrito está vacío.');
